@@ -26,6 +26,10 @@
 	<string>we need to use camera</string>
 	<key>NSCameraUsageDescription</key>
 	<string>we need to use camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>we need Location access</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>we need Location access</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

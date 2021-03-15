@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:places_app/providers/places.dart';
 import 'package:places_app/widgets/image_input_widget.dart';
+import 'package:places_app/widgets/location_input_widget.dart';
+import 'package:provider/provider.dart';
 
 class AddPlacesScreen extends StatefulWidget {
   static const routeName = 'add-places';
@@ -9,6 +14,21 @@ class AddPlacesScreen extends StatefulWidget {
 
 class _AddPlacesScreenState extends State<AddPlacesScreen> {
   final _titleController = TextEditingController();
+  File _pickedImage;
+
+  void getImage(File pickedImage) {
+    _pickedImage = pickedImage;
+  }
+
+  void _save() {
+    if (_titleController.text.isEmpty || _pickedImage == null) {
+      return;
+    }
+    Provider.of<Places>(context, listen: false)
+        .addPlace(_pickedImage, _titleController.text);
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,13 +52,19 @@ class _AddPlacesScreenState extends State<AddPlacesScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  ImageInputWidget(),
+                  ImageInputWidget(
+                    onSelectImage: getImage,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  LocationInputWidget(),
                 ],
               ),
             ),
           ),
           RaisedButton.icon(
-            onPressed: () {},
+            onPressed: _save,
             icon: Icon(
               Icons.add,
               color: Theme.of(context).primaryColor,
