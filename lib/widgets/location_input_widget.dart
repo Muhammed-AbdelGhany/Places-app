@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+// cant use maps we need a token
 
 class LocationInputWidget extends StatefulWidget {
   @override
